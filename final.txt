@@ -1,0 +1,188 @@
+package lab4;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+
+
+public class Lab4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 System.setProperty("webdriver.chrome.driver","C://Users//4082//Desktop/chromedriver.exe");
+		 
+		 /*
+		   WebDriver driver = new ChromeDriver();
+		   
+		   //Maximize window
+		   driver.manage().window().maximize();
+		 
+		   String baseurlString= ("https://www.way2automation.com/");
+		   driver.get(baseurlString);
+		   
+		   WebElement allCourses= driver.findElement(By.linkText("All Courses"));
+		   
+		   Actions builder = new Actions(driver);
+           Action mouseOverAllCourses = builder
+                   .clickAndHold(allCourses)
+                   .build();
+           mouseOverAllCourses.perform();
+           
+           WebElement selenm= driver.findElement(By.linkText("Selenium"));
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Selenium")));
+        	        builder.moveToElement(selenm);
+        	        builder.perform();
+           
+           WebElement selwithJava= driver.findElement(By.linkText("Selenium with Java"));
+           WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(1));
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Selenium with Java")));
+	        builder.moveToElement(selwithJava);
+	        builder.click();
+	        builder.perform();
+	        
+           Action mouseOverSelwithJava = builder
+                   .clickAndHold(selwithJava)
+                   .click()
+                   .build();
+           mouseOverSelwithJava .perform();
+ 
+		  // driver.close();
+		  */
+		 
+		
+		// Make new driver object
+				 WebDriver driver1 = new ChromeDriver();
+				 driver1.manage().window().maximize();
+				 
+			     //Set Url   
+				 String baseurl1="https://www.way2automation.com/way2auto_jquery/frames-and-windows.php";
+				 
+				 //Get Url
+		         driver1.get(baseurl1);
+		    
+		         try {       
+		             Thread.sleep(2000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	      }
+		         
+		         //Switch to main frame by window handling object
+		          
+		         String windowHandle = driver1.getWindowHandle();
+		         driver1.switchTo().frame(0);
+		         //Find element from main frame
+		         driver1.findElement(By.linkText("New Browser Tab")).click();
+		         
+		         //wait 
+		         try {       
+		             Thread.sleep(2000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	      }
+		   	      
+		        //Handle window for accessing new frame
+		         
+		         driver1.switchTo().window(windowHandle);
+
+		         try {       
+		             Thread.sleep(1000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	      }
+				 
+				 driver1.findElement(By.xpath("//a[@href='#example-1-tab-2']")).click();
+				//Switch to frame 1 for accessing element under frame
+				 driver1.switchTo().frame(1);
+		         driver1.findElement(By.linkText("Open New Seprate Window")).click();
+		         try {       
+		             Thread.sleep(2000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	       }
+		         
+		       //Back to main frame
+		         driver1.switchTo().window(windowHandle);
+		         driver1.findElement(By.xpath("//a[@href='#example-1-tab-3']")).click();
+		       //Switch to frame 2 for accessing element under frame
+				 driver1.switchTo().frame(2);
+		         driver1.findElement(By.linkText("Open Frameset Window")).click();
+		         try {       
+		             Thread.sleep(5000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	       }
+		       // Switch to main frame  
+		         driver1.switchTo().window(windowHandle);
+		         driver1.findElement(By.xpath("//a[@href='#example-1-tab-4']")).click();
+		       //Switch to frame 3 for accessing element under frame
+				 driver1.switchTo().frame(3);
+		         driver1.findElement(By.linkText("Open multiple pages")).click();
+		         try {       
+		             Thread.sleep(2000);
+		   	      }
+		   	      catch (Exception e) {
+		   	      // catching the exception
+		   	      System.out.println(e);
+		   	       }
+		   	       
+		         driver1.switchTo().window(windowHandle);
+		         
+		 
+		 
+		 /*
+		         
+		 WebDriver driver2 = new ChromeDriver();
+		 driver2.manage().window().maximize();
+		 driver2.get("https://sso.teachable.com/secure/673/identity/login");
+		 
+		 driver2.findElement(By.xpath("//a[@href='/secure/673/identity/sign_up']")).click();
+		 try {       
+             Thread.sleep(3000);
+         }
+         catch (Exception e) {
+         // catching the exception
+         System.out.println(e);
+           }
+		 
+		 driver2.findElement(By.id("user_name")).sendKeys("SidraTulMuntaha");
+		 driver2.findElement(By.id("user_email")).sendKeys("sidratulmuntaha43@gmail.com");
+		 driver2.findElement(By.id("password")).sendKeys("Sidra@123");
+		 try {       
+             Thread.sleep(1000);
+         }
+         catch (Exception e) {
+         // catching the exception
+         System.out.println(e);
+           }
+		 
+		 driver2.findElement(By.xpath("//input[@value='Sign up']")).click();
+		 try {       
+             Thread.sleep(2000);
+         }
+         catch (Exception e) {
+         // catching the exception
+         System.out.println(e);
+           }
+           */
+           
+	} 
+
+}
